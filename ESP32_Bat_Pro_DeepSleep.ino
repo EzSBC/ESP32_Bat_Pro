@@ -30,7 +30,6 @@ Method to print the reason by which ESP32 has been awaken from sleep
 */
 void print_wakeup_reason(){
   esp_sleep_wakeup_cause_t wakeup_reason;
-
   wakeup_reason = esp_sleep_get_wakeup_cause();
 
   switch(wakeup_reason)
@@ -47,8 +46,7 @@ void print_wakeup_reason(){
 void setup(){
   Serial.begin(115200);
   gg.begin() ;  // Initialize the LC709203F
-  gg.setAlarmVoltage( 0 );      // Zero voltage to prevent trigering the interrupt
-  gg.setAlarmRSOC( 0 ) ;        // Zero capacity to prevent trigering the interrupt
+  gg.setPowerMode( LC709203F_POWER_SLEEP ) ;
   delay(300); //Take some time to open up the Serial Monitor
 
   //Increment boot number and print it every reboot
